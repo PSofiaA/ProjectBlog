@@ -1,35 +1,38 @@
-<!-- Разметка - шаблон - структура нашего компонента -->
 <template>
   <div class="app">
-    <submit-btn @click="showDialog">Create Post</submit-btn>
+    <div class="app-btns">
+      <submit-btn @click="showDialog">Create Post</submit-btn>
+      <select-box v-model="SelectedSort"></select-box>
+    </div>
 
     <dialog-box v-model:show="dialogVisible">
       <post-form @create="createPost"></post-form>
     </dialog-box>
 
-    <post-list
-      :posts="posts"
-      @remove="removePost"
-    ></post-list>
+    <post-list :posts="posts" @remove="removePost"></post-list>
   </div>
 </template>
 
-<!-- Описываем логику компонента, функции, -->
 <script>
 import PostForm from "@/components/PostForm.vue";
 import PostList from "@/components/PostList.vue";
+import ModalButton from "./components/ModalButton.vue";
+import NavButton from "./components/NavButton.vue";
 import axios from "axios";
 
 export default {
   components: {
     PostList,
     PostForm,
+    ModalButton,
+    NavButton,
   },
   data() {
     return {
       posts: [],
       dialogVisible: false,
       modificatorVal: "",
+      SelectedSort: "",
     };
   },
 
@@ -44,9 +47,7 @@ export default {
     },
 
     removePost(post) {
-      this.posts = this.posts.filter(
-        (p) => p.id !== post.id
-      );
+      this.posts = this.posts.filter((p) => p.id !== post.id);
     },
 
     showDialog() {
@@ -74,5 +75,48 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: poppins;
+}
+svg {
+  width: 100vw;
+  height: 100vh;
+}
+.cont {
+  display: flex;
+  flex-direction: column;
+}
+
+/* button {
+  position: absolute;
+  top: 80px;
+  left: 90px;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-size: 130px;
+  background-color: rgba(0, 136, 169, 0.8);
+  color: white;
+  border-radius: 54%;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background: hsl(0, 90%, 46%);
+    cursor: pointer;
+    color: white;
+    -webkit-transition: background-color 10ms linear;
+    -ms-transition: background-color 10ms linear;
+    transition: all 0.3s ease 0s;
+  }
+} */
+.btn-close {
+  top: 80px;
+  left: 490px;
+}
+.app-btns {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

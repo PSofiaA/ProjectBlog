@@ -2,11 +2,7 @@
   <form @submit.prevent>
     <h4>Create new post</h4>
 
-    <input-box
-      v-model="post.title"
-      type="text"
-      placeholder="Input post name"
-    />
+    <input-box v-model="post.title" type="text" placeholder="Input post name" />
 
     <input-box
       v-model="post.body"

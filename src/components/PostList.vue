@@ -27,16 +27,15 @@ export default {
 </script>
 
 <style scoped>
-/* .post-list {
+.post-list {
   margin: 50px;
+}
 
-} */
-
-/* .blog-heading {
+.blog-heading {
   display: flex;
   justify-content: center;
   align-items: center;
   color: #f33c3c;
   font-size: 2rem;
-} */
+}
 </style>
